@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ai-review-agent"
+version = "0.1.0"
+description = "An AI project pre-review agent that scores proposals, validates token plans, and rewrites submissions."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "AI Review Agent Contributors" }]
+dependencies = [
+  "fastapi>=0.115.0",
+  "pydantic>=2.7.0",
+  "rich>=13.7.0",
+  "typer>=0.12.0",
+  "uvicorn>=0.30.0"
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.2.0",
+  "ruff>=0.5.0"
+]
+
+[project.scripts]
+ai-review-agent = "ai_review_agent.cli:app"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["ai_review_agent*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
